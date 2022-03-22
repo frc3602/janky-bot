@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
     // Subsystems
     public final static DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+    public final static PixySubsystem pixySubsystem = new PixySubsystem();
 
     // Commands
     public final DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
@@ -41,6 +42,7 @@ public class RobotContainer {
     }
 
     // Autonomous
+
     public Command getAutonomousCommand() {
         return Robot.m_autonomousCommand;
     }

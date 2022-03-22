@@ -24,15 +24,15 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  * @author Cody Wellman
  */
 public class DrivetrainSubsystem extends SubsystemBase {
-  private WPI_TalonSRX frontLeft = new WPI_TalonSRX(Drivetrain.driveFrontLeftCANID);
-  private WPI_TalonSRX backLeft = new WPI_TalonSRX(Drivetrain.driveBackLeftCANID);
-  private WPI_TalonSRX frontRight = new WPI_TalonSRX(Drivetrain.driveFrontRightCANID);
-  private WPI_TalonSRX backRight = new WPI_TalonSRX(Drivetrain.driveBackRightCANID);
+  private static final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Drivetrain.driveFrontLeftCANID);
+  private static final WPI_TalonSRX backLeft = new WPI_TalonSRX(Drivetrain.driveBackLeftCANID);
+  private static final WPI_TalonSRX frontRight = new WPI_TalonSRX(Drivetrain.driveFrontRightCANID);
+  private static final WPI_TalonSRX backRight = new WPI_TalonSRX(Drivetrain.driveBackRightCANID);
 
-  private MotorControllerGroup left = new MotorControllerGroup(frontLeft, backLeft);
-  private MotorControllerGroup right = new MotorControllerGroup(frontRight, backRight);
+  private static final MotorControllerGroup left = new MotorControllerGroup(frontLeft, backLeft);
+  private static final MotorControllerGroup right = new MotorControllerGroup(frontRight, backRight);
 
-  private DifferentialDrive differentialDrive = new DifferentialDrive(left, right);
+  private static final DifferentialDrive differentialDrive = new DifferentialDrive(left, right);
 
   public DrivetrainSubsystem() {
     configureMotors();
