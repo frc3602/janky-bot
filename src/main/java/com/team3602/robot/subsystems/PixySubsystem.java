@@ -7,9 +7,9 @@ package com.team3602.robot.subsystems;
 // Java imports
 import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Pixy2JavaAPI imports
 import io.github.pseudoresonance.pixy2api.Pixy2;
@@ -68,7 +68,8 @@ public class PixySubsystem extends SubsystemBase {
   }
 
   public void logDataToSmartDashboard() {
-    SmartDashboard.putNumber("Block X", blockColor.getSignature());
+    SmartDashboard.putNumber("Block Signature", blockColor.getSignature());
+
     SmartDashboard.putNumber("Block X", blockColor.getX());
     SmartDashboard.putNumber("Block Y", blockColor.getY());
   }
