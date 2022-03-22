@@ -22,7 +22,7 @@ public class RobotContainer {
     public final static PixySubsystem pixySubsystem = new PixySubsystem();
 
     // Commands
-    public final DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
+    public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
 
     // Operator interfaces
     public static OI oi;
@@ -44,6 +44,6 @@ public class RobotContainer {
     // Autonomous
 
     public Command getAutonomousCommand() {
-        return Robot.m_autonomousCommand;
+        return null;
     }
 }

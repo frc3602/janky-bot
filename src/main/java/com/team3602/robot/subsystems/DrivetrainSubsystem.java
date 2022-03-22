@@ -38,8 +38,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     configureMotors();
   }
 
-  public void ArcadeDrive(double xSpeed, double xRotation) {
-    differentialDrive.arcadeDrive(xSpeed, xRotation);
+  public void ArcadeDrive(double xSpeed, double zRotation) {
+    differentialDrive.arcadeDrive(xSpeed, zRotation);
   }
 
   /**
