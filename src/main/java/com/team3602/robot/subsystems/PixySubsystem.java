@@ -54,7 +54,7 @@ public class PixySubsystem extends SubsystemBase {
     }
 
     ArrayList<Block> blocks = pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found by the Pixy2
-
+    
     // for (Block block : blocks) {
     //   if (block.getSignature() == blockSignature) {
     //     if (blockColor == null) {
