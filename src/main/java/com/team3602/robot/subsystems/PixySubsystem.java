@@ -28,6 +28,8 @@ import io.github.pseudoresonance.pixy2api.links.SPILink;
 public class PixySubsystem extends SubsystemBase {
   private static final Pixy2 pixyCamera = Pixy2.createInstance(new SPILink());
 
+  private static final int blockSignature = 1;
+
   private static Block blockColor = null;
 
   public PixySubsystem() {
@@ -53,11 +55,13 @@ public class PixySubsystem extends SubsystemBase {
 
     ArrayList<Block> blocks = pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found by the Pixy2
 
-    // for (Block block : blocks) { // Loops through all blocks and finds the widest one
-    //   if (blockColor == null) {
-    //     blockColor = block;
-    //   } else if (block.getSignature() > blockColor.getSignature()) {
-    //     blockColor = block;
+    // for (Block block : blocks) {
+    //   if (block.getSignature() == blockSignature) {
+    //     if (blockColor == null) {
+    //       blockColor = block;
+    //     } else if (block.getWidth() > blockColor.getWidth()) {
+    //       blockColor = block;
+    //     }
     //   }
     // }
     return blockColor;
@@ -68,5 +72,4 @@ public class PixySubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Block X", blockColor.getX());
     SmartDashboard.putNumber("Block Y", blockColor.getY());
   }
-
 }
