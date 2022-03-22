@@ -50,15 +50,15 @@ public class PixyCommand extends CommandBase {
     ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found by
                                                                                  // the Pixy2
 
-    for (Block block : blocks) {
-      if (block.getSignature() == blockSignature) {
-        if (blockColor == null) {
-          blockColor = block;
-        } else if (block.getWidth() > blockColor.getWidth()) {
-          blockColor = block;
-        }
-      }
-    }
+    // for (Block block : blocks) {
+    //   if (block.getSignature() == blockSignature) {
+    //     if (blockColor == null) {
+    //       blockColor = block;
+    //     } else if (block.getWidth() > blockColor.getWidth()) {
+    //       blockColor = block;
+    //     }
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.
