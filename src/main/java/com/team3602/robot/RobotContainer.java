@@ -23,6 +23,7 @@ public class RobotContainer {
 
     // Commands
     public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
+    public final static PixyCommand pixyCommand = new PixyCommand();
 
     // Operator interfaces
     public static OI oi;
@@ -36,6 +37,7 @@ public class RobotContainer {
 
     private void configureDefaultCommands() {
         drivetrainSubsystem.setDefaultCommand(drivetrainCommand);
+        pixySubsystem.setDefaultCommand(pixyCommand);
     }
 
     private void configureButtonBindings() {
