@@ -38,6 +38,7 @@ public class PixySubsystem extends SubsystemBase {
     pixyCamera.setLED(255, 255, 255);
 
     getBiggestBlock();
+    logDataToSmartDashboard();
   }
 
   public static Block getBiggestBlock() {
