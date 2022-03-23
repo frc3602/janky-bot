@@ -31,13 +31,13 @@ public class PixySubsystem extends SubsystemBase {
     pixyCamera.setLamp((byte) 1, (byte) 1);
     pixyCamera.setLED(255, 255, 255);
 
-    logDataToSmartDashboard();
+    // logDataToSmartDashboard();
   }
 
-  public void logDataToSmartDashboard() {
-    SmartDashboard.putNumber("Block Signature", PixyCommand.blockColor.getSignature());
+  // public void logDataToSmartDashboard() {
+  //   SmartDashboard.putNumber("Block Signature", PixyCommand.blockColor.getSignature());
 
-    SmartDashboard.putNumber("Block X", PixyCommand.blockColor.getX());
-    SmartDashboard.putNumber("Block Y", PixyCommand.blockColor.getY());
-  }
+  //   SmartDashboard.putNumber("Block X", PixyCommand.blockColor.getX());
+  //   SmartDashboard.putNumber("Block Y", PixyCommand.blockColor.getY());
+  // }
 }
