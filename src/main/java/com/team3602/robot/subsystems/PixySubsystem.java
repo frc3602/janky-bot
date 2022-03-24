@@ -3,12 +3,10 @@
 /* found in the root directory of this project. */
 
 package com.team3602.robot.subsystems;
+import com.team3602.robot.commands.PixyCommand;
 
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import com.team3602.robot.commands.PixyCommand;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Pixy2JavaAPI imports

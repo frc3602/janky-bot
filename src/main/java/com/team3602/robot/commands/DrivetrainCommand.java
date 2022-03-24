@@ -23,7 +23,7 @@ public class DrivetrainCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.drivetrainSubsystem.ArcadeDrive(OI.joystick.getY() * -1.0, OI.joystick.getZ());
+    RobotContainer.drivetrainSubsystem.ArcadeDrive(OI.joystick.getY() * -1.0, OI.joystick.getX());
   }
 
   // Called once the command ends or is interrupted.
