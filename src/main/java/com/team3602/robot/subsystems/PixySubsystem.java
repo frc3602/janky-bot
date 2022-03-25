@@ -3,6 +3,7 @@
 /* found in the root directory of this project. */
 
 package com.team3602.robot.subsystems;
+
 import com.team3602.robot.commands.PixyCommand;
 
 // WPILib imports
@@ -26,16 +27,19 @@ public class PixySubsystem extends SubsystemBase {
 
   public PixySubsystem() {
     pixyCamera.init();
-    pixyCamera.setLamp((byte) 1, (byte) 1);
-    pixyCamera.setLED(255, 255, 255);
-
-    // logDataToSmartDashboard();
+    // pixyCamera.setLamp((byte) 0, (byte) 1);
+    // pixyCamera.setLED(255, 255, 255);
   }
 
-  // public void logDataToSmartDashboard() {
-  //   SmartDashboard.putNumber("Block Signature", PixyCommand.blockColor.getSignature());
+  public void logDataToSmartDashboard() {
+    // SmartDashboard.putNumber("Block Signature", PixyCommand.blockColor.getSignature());
 
-  //   SmartDashboard.putNumber("Block X", PixyCommand.blockColor.getX());
-  //   SmartDashboard.putNumber("Block Y", PixyCommand.blockColor.getY());
-  // }
+    // SmartDashboard.putNumber("Block X", PixyCommand.blockColor.getX());
+    // SmartDashboard.putNumber("Block Y", PixyCommand.blockColor.getY());
+  }
+
+  @Override
+  public void periodic() {
+    logDataToSmartDashboard();
+  }
 }

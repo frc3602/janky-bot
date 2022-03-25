@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Pixy2JavaAPI imports
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
@@ -19,7 +20,8 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class PixyCommand extends CommandBase {
 
-  private static final int blockSignature = 1;
+  private static final int RED_BALL = 1;
+  private static final int BLUE_BALL = 2;
 
   public static Block blockColor = null;
 
@@ -40,24 +42,31 @@ public class PixyCommand extends CommandBase {
     // number of returned blocks to 25, for a slight increase in efficiency
     int blockCount = PixySubsystem.pixyCamera.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
 
-    System.out.println("Found " + blockCount + " blocks!"); // Reports number of blocks found
+    // System.out.println("Found " + blockCount + " blocks!"); // Reports number of blocks found
 
-    if (blockCount <= 0) {
-      System.err.println("No blocks found!");
-      return; // If blocks were not found, stop processing
+    // if (blockCount <= 0) {
+    //   System.err.println("No blocks found!");
+    //   return; // If blocks were not found, stop processing
+    // }
+
+    ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found
+
+    for (Block block : blocks) {
+      if (block.getSignature() == RED_BALL) {
+        System.out.println("Red ball found!");
+      } else if (block.getSignature() == BLUE_BALL) {
+        System.out.println("Blue ball found!");
+      }
     }
 
-    ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found by
-                                                                                 // the Pixy2
-
     // for (Block block : blocks) {
-    //   if (block.getSignature() == blockSignature) {
-    //     if (blockColor == null) {
-    //       blockColor = block;
-    //     } else if (block.getWidth() > blockColor.getWidth()) {
-    //       blockColor = block;
-    //     }
-    //   }
+    // if (block.getSignature() == blockSignature) {
+    // if (blockColor == null) {
+    // blockColor = block;
+    // } else if (block.getWidth() > blockColor.getWidth()) {
+    // blockColor = block;
+    // }
+    // }
     // }
   }
 
