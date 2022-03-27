@@ -20,10 +20,12 @@ public class RobotContainer {
     // Subsystems
     public final static DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
     public final static PixySubsystem pixySubsystem = new PixySubsystem();
+    public final static PixyTurnSubsystem pixyTurnSubsytem = new PixyTurnSubsystem();
 
     // Commands
     public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
     public final static PixyCommand pixyCommand = new PixyCommand();
+    public final static PixyTurnCommand pixyTurnCommand = new PixyTurnCommand();
 
     // Operator interfaces
     public static OI oi;
@@ -41,6 +43,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
+        OI.joystickButtonOne.whileHeld(pixyTurnCommand);
     }
 
     // Autonomous

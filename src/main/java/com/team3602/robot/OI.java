@@ -8,6 +8,7 @@ import static com.team3602.robot.Constants.Controller;
 
 // WPILib imports
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * The OI class provides joysticks and buttons for the robot.
@@ -17,6 +18,8 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 
   public static Joystick joystick = new Joystick(Controller.joystickPort);
+
+  public static JoystickButton joystickButtonOne = new JoystickButton(joystick, Controller.joystickButton1);
 
   public OI() {
   }

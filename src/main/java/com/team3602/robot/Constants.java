@@ -27,5 +27,7 @@ public interface Constants {
      */
     public interface Controller {
         int joystickPort = 0;
+
+        int joystickButton1 = 1;
     }
 }

@@ -12,10 +12,8 @@ import java.util.ArrayList;
 
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // Pixy2JavaAPI imports
-import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class PixyCommand extends CommandBase {
@@ -23,7 +21,7 @@ public class PixyCommand extends CommandBase {
   private static final int RED_BALL = 1;
   private static final int BLUE_BALL = 2;
 
-  public static Block blockColor = null;
+  public static Block largestBlock = null;
 
   public PixyCommand() {
     addRequirements(RobotContainer.pixySubsystem);
@@ -37,16 +35,19 @@ public class PixyCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Gets the number of "blocks", identified targets, that match signature 1 on
-    // the Pixy2, does not wait for new data if none is available, and limits the
-    // number of returned blocks to 25, for a slight increase in efficiency
-    int blockCount = PixySubsystem.pixyCamera.getCCC().getBlocks(false, Pixy2CCC.CCC_SIG1, 25);
+    RobotContainer.pixySubsystem.logDataToSmartDashboard();
 
-    // System.out.println("Found " + blockCount + " blocks!"); // Reports number of blocks found
+    // Gets the number of "blocks", identified targets, does not wait for new data
+    // if none is available, and limits the number of returned blocks to 25, for a
+    // slight increase in efficiency
+    int pixyBlocks = PixySubsystem.pixyCamera.getCCC().getBlocks(false);
+
+    // System.out.println("Found " + blockCount + " blocks!"); // Reports number of
+    // blocks found
 
     // if (blockCount <= 0) {
-    //   System.err.println("No blocks found!");
-    //   return; // If blocks were not found, stop processing
+    // System.err.println("No blocks found!");
+    // return; // If blocks were not found, stop processing
     // }
 
     ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found
@@ -59,15 +60,16 @@ public class PixyCommand extends CommandBase {
       }
     }
 
-    // for (Block block : blocks) {
-    // if (block.getSignature() == blockSignature) {
-    // if (blockColor == null) {
-    // blockColor = block;
-    // } else if (block.getWidth() > blockColor.getWidth()) {
-    // blockColor = block;
-    // }
-    // }
-    // }
+    largestBlock = null;
+
+    for (Block block : blocks) { // Loops through all blocks and finds the widest one
+      if (largestBlock == null) {
+        largestBlock = block;
+      } else if (block.getWidth() > largestBlock.getWidth()) {
+        largestBlock = block;
+      }
+    }
+
   }
 
   // Called once the command ends or is interrupted.

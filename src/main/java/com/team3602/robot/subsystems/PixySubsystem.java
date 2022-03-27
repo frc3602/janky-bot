@@ -32,14 +32,14 @@ public class PixySubsystem extends SubsystemBase {
   }
 
   public void logDataToSmartDashboard() {
-    // SmartDashboard.putNumber("Block Signature", PixyCommand.blockColor.getSignature());
-
-    // SmartDashboard.putNumber("Block X", PixyCommand.blockColor.getX());
-    // SmartDashboard.putNumber("Block Y", PixyCommand.blockColor.getY());
+    if (PixyCommand.largestBlock != null) {
+      SmartDashboard.putNumber("Block Signature", PixyCommand.largestBlock.getSignature());
+      SmartDashboard.putNumber("Block X", PixyCommand.largestBlock.getX());
+      SmartDashboard.putNumber("Block Y", PixyCommand.largestBlock.getY());
+    }
   }
 
   @Override
   public void periodic() {
-    logDataToSmartDashboard();
   }
 }
