@@ -27,8 +27,6 @@ public class PixySubsystem extends SubsystemBase {
 
   public PixySubsystem() {
     pixyCamera.init();
-    // pixyCamera.setLamp((byte) 0, (byte) 1);
-    // pixyCamera.setLED(255, 255, 255);
   }
 
   public void logDataToSmartDashboard() {

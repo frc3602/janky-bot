@@ -13,13 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 
 public class PixyTurnSubsystem extends PIDSubsystem {
-  /** Creates a new PixyTurnSubsystem. */
   public PixyTurnSubsystem() {
     // The PIDController used by the subsystem
     super(new PIDController(0.0040, 0, 0));
-
     setSetpoint(315.0 / 2.0);
-
     getController().setTolerance(5.0);
     getController().setIntegratorRange(-0.10, 0.10);
     getController().enableContinuousInput(0, 315);
@@ -31,14 +28,12 @@ public class PixyTurnSubsystem extends PIDSubsystem {
   public void useOutput(double output, double setpoint) {
     // Use the output here
     RobotContainer.drivetrainSubsystem.ArcadeDrive(0.0, output * -1.0);
-
-    SmartDashboard.putNumber("Output value", output);
+    SmartDashboard.putNumber("Output Value", output);
   }
 
   @Override
   public double getMeasurement() {
     // Return the process variable measurement here
-
     double returnValue = 315.0 / 2.0;
 
     if (PixyCommand.largestBlock != null) {

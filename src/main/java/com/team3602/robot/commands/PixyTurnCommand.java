@@ -6,10 +6,10 @@ package com.team3602.robot.commands;
 
 import com.team3602.robot.RobotContainer;
 
+// WPILib imports
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class PixyTurnCommand extends CommandBase {
-  /** Creates a new PixyTurnCommand. */
   public PixyTurnCommand() {
     addRequirements(RobotContainer.drivetrainSubsystem);
   }
@@ -22,7 +22,8 @@ public class PixyTurnCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override

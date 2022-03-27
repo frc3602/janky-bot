@@ -42,14 +42,6 @@ public class PixyCommand extends CommandBase {
     // slight increase in efficiency
     int pixyBlocks = PixySubsystem.pixyCamera.getCCC().getBlocks(false);
 
-    // System.out.println("Found " + blockCount + " blocks!"); // Reports number of
-    // blocks found
-
-    // if (blockCount <= 0) {
-    // System.err.println("No blocks found!");
-    // return; // If blocks were not found, stop processing
-    // }
-
     ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found
 
     for (Block block : blocks) {
@@ -69,7 +61,6 @@ public class PixyCommand extends CommandBase {
         largestBlock = block;
       }
     }
-
   }
 
   // Called once the command ends or is interrupted.
