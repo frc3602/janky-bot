@@ -20,12 +20,10 @@ public class RobotContainer {
     // Subsystems
     public final static DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
     public final static PixySubsystem pixySubsystem = new PixySubsystem();
-    public final static PixyTurnSubsystem pixyTurnSubsytem = new PixyTurnSubsystem();
 
     // Commands
     public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
     public final static PixyCommand pixyCommand = new PixyCommand();
-    public final static PixyTurnCommand pixyTurnCommand = new PixyTurnCommand();
     public final static PixyTurnPIDCommand pixyTurnPIDCommand = new PixyTurnPIDCommand();
 
     // Operator interfaces

@@ -6,6 +6,7 @@ package com.team3602.robot.commands;
 
 import com.team3602.robot.OI;
 import com.team3602.robot.RobotContainer;
+import static com.team3602.robot.Constants.Pixy;
 
 // WPILib imports
 import edu.wpi.first.math.controller.PIDController;
@@ -19,7 +20,7 @@ public class PixyTurnPIDCommand extends PIDCommand {
         // This should return the measurement
         () -> RobotContainer.pixySubsystem.getLargestBlockX(),
         // This should return the setpoint (can also be a constant)
-        () -> 315.0 / 2.0,
+        () -> Pixy.targetX,
         // This uses the output
         output -> {
           // Use the output here
@@ -28,7 +29,7 @@ public class PixyTurnPIDCommand extends PIDCommand {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrainSubsystem);
     // Configure additional PID options by calling `getController` here.
-    getController().setSetpoint(315.0 / 2.0);
+    getController().setSetpoint(Pixy.targetX);
     getController().setTolerance(5.0);
     getController().setIntegratorRange(-0.10, 0.10);
     getController().enableContinuousInput(0, 315);

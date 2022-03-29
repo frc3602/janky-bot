@@ -63,6 +63,7 @@ public class PixyCommand extends CommandBase {
         largestBlock = block;
       }
     }
+
     if (largestBlock != null) {
       largestBlockX = largestBlock.getX();
     }

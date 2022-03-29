@@ -5,7 +5,7 @@
 package com.team3602.robot.subsystems;
 
 import com.team3602.robot.RobotContainer;
-import com.team3602.robot.commands.PixyCommand;
+import static com.team3602.robot.Constants.Pixy;
 
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -41,7 +41,7 @@ public class PixySubsystem extends SubsystemBase {
 
   public double getLargestBlockX() {
     // Return the process variable measurement here
-    double returnValue = 315.0 / 2.0;
+    double returnValue = Pixy.targetX;
 
     if (RobotContainer.pixyCommand.largestBlock != null) {
       returnValue = RobotContainer.pixyCommand.largestBlock.getX();
