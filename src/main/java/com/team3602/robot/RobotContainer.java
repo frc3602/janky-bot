@@ -26,6 +26,7 @@ public class RobotContainer {
     public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
     public final static PixyCommand pixyCommand = new PixyCommand();
     public final static PixyTurnCommand pixyTurnCommand = new PixyTurnCommand();
+    public final static PixyTurnPIDCommand pixyTurnPIDCommand = new PixyTurnPIDCommand();
 
     // Operator interfaces
     public static OI oi;
@@ -43,7 +44,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        OI.joystickButtonOne.whileHeld(pixyTurnCommand);
+        OI.joystickButtonOne.whileHeld(pixyTurnPIDCommand);
     }
 
     // Autonomous

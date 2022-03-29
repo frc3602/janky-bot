@@ -4,6 +4,7 @@
 
 package com.team3602.robot.subsystems;
 
+import com.team3602.robot.RobotContainer;
 import com.team3602.robot.commands.PixyCommand;
 
 // WPILib imports
@@ -27,14 +28,25 @@ public class PixySubsystem extends SubsystemBase {
 
   public PixySubsystem() {
     pixyCamera.init();
+    // pixyCamera.setLamp((byte) 0, (byte) 1);
   }
 
   public void logDataToSmartDashboard() {
-    if (PixyCommand.largestBlock != null) {
-      SmartDashboard.putNumber("Block Signature", PixyCommand.largestBlock.getSignature());
-      SmartDashboard.putNumber("Block X", PixyCommand.largestBlock.getX());
-      SmartDashboard.putNumber("Block Y", PixyCommand.largestBlock.getY());
+    if (RobotContainer.pixyCommand.largestBlock != null) {
+      SmartDashboard.putNumber("Block Signature", RobotContainer.pixyCommand.largestBlock.getSignature());
+      SmartDashboard.putNumber("Block X", RobotContainer.pixyCommand.largestBlock.getX());
+      SmartDashboard.putNumber("Block Y", RobotContainer.pixyCommand.largestBlock.getY());
     }
+  }
+
+  public double getLargestBlockX() {
+    // Return the process variable measurement here
+    double returnValue = 315.0 / 2.0;
+
+    if (RobotContainer.pixyCommand.largestBlock != null) {
+      returnValue = RobotContainer.pixyCommand.largestBlock.getX();
+    }
+    return returnValue;
   }
 
   @Override

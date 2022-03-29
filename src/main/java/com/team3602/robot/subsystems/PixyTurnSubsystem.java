@@ -36,9 +36,9 @@ public class PixyTurnSubsystem extends PIDSubsystem {
     // Return the process variable measurement here
     double returnValue = 315.0 / 2.0;
 
-    if (PixyCommand.largestBlock != null) {
-      returnValue = PixyCommand.largestBlock.getX();
-    }
+    // if (PixyCommand.largestBlock != null) {
+    //   returnValue = PixyCommand.largestBlock.getX();
+    // }
     return returnValue;
   }
 }

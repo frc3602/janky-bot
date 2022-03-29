@@ -18,10 +18,11 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class PixyCommand extends CommandBase {
 
-  private static final int RED_BALL = 1;
-  private static final int BLUE_BALL = 2;
+  private static final int RED_BALL = 2;
+  private static final int BLUE_BALL = 1;
 
-  public static Block largestBlock = null;
+  public Block largestBlock = null;
+  public int largestBlockX = 315 / 2;
 
   public PixyCommand() {
     addRequirements(RobotContainer.pixySubsystem);
@@ -40,7 +41,7 @@ public class PixyCommand extends CommandBase {
     // Gets the number of "blocks", identified targets, does not wait for new data
     // if none is available, and limits the number of returned blocks to 25, for a
     // slight increase in efficiency
-    int pixyBlocks = PixySubsystem.pixyCamera.getCCC().getBlocks(false);
+    int pixyBlocks = PixySubsystem.pixyCamera.getCCC().getBlocks(false, -1, 25);
 
     ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found
 
@@ -53,6 +54,7 @@ public class PixyCommand extends CommandBase {
     }
 
     largestBlock = null;
+    largestBlockX = 315 / 2;
 
     for (Block block : blocks) { // Loops through all blocks and finds the widest one
       if (largestBlock == null) {
@@ -61,6 +63,11 @@ public class PixyCommand extends CommandBase {
         largestBlock = block;
       }
     }
+    if (largestBlock != null) {
+      largestBlockX = largestBlock.getX();
+    }
+
+    blocks.clear();
   }
 
   // Called once the command ends or is interrupted.
