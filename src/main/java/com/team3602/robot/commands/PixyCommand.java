@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class PixyCommand extends CommandBase {
-
   private static final int RED_BALL = 2;
   private static final int BLUE_BALL = 1;
 
