@@ -22,7 +22,6 @@ public class PixyCommand extends CommandBase {
   private static final int BLUE_BALL = 1;
 
   public Block largestBlock = null;
-  public int largestBlockX = 315 / 2;
 
   public PixyCommand() {
     addRequirements(RobotContainer.pixySubsystem);
@@ -54,7 +53,6 @@ public class PixyCommand extends CommandBase {
     }
 
     largestBlock = null;
-    largestBlockX = 315 / 2;
 
     for (Block block : blocks) { // Loops through all blocks and finds the widest one
       if (largestBlock == null) {
@@ -62,10 +60,6 @@ public class PixyCommand extends CommandBase {
       } else if (block.getWidth() > largestBlock.getWidth()) {
         largestBlock = block;
       }
-    }
-
-    if (largestBlock != null) {
-      largestBlockX = largestBlock.getX();
     }
 
     blocks.clear();
