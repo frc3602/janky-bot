@@ -7,6 +7,8 @@ package com.team3602.robot.subsystems;
 import com.team3602.EColorStrip;
 import com.team3602.robot.OI;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -24,6 +26,7 @@ public class BlingTestSubsystem extends SubsystemBase {
   public BlingTestSubsystem()
   {
 
+    DriverStation.getAlliance();
   }
 
   public void Init()
@@ -31,9 +34,17 @@ public class BlingTestSubsystem extends SubsystemBase {
     colorStrip.start();
   }
 
-  public void SetWhite()
+  public static Color GetAllianceColor()
   {
-    colorStrip.SetAllColor(Color.kWhite);
+    if(DriverStation.getAlliance() == Alliance.Blue)
+     return Color.kFirstBlue;
+    else
+     return Color.kFirstRed;
+  }
+
+  public void SetAllianceColor()
+  {
+    colorStrip.SetAllColor(GetAllianceColor());
   }
 
   public void SetOne(boolean on)
@@ -60,7 +71,7 @@ public class BlingTestSubsystem extends SubsystemBase {
     }
     else if(!onOne && prevOne)
     {
-      colorStrip.SetSectionColor(0, Color.kRed);
+      colorStrip.SetSectionColor(0, GetAllianceColor());
     }
 
     if(onTwo && !prevTwo)
@@ -69,7 +80,7 @@ public class BlingTestSubsystem extends SubsystemBase {
     }
     else if(!onTwo && prevTwo)
     {
-      colorStrip.SetSectionColor(1, Color.kBlue);
+      colorStrip.SetSectionColor(1, GetAllianceColor());
     }
 
     prevOne = onOne;

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 
+
 /**
  * Add your docs here.
  */
@@ -27,12 +28,13 @@ public class EColorStrip
   public EColorStrip(int port, int length_, int sections_, int deadSpace)
     {
     this.length = length_;
-    this.sections = sections_;
+    //this.sections = sections_;
     this.deadSpace = deadSpace;
 
-    sectionSize = length / sections;
+    SetNewSectionSize(sections_);
+    //sectionSize = length / sections;
 
-    System.out.println("section size" + sectionSize); 
+    //System.out.println("section size" + sectionSize); 
 
     led = new AddressableLED(port);
     int buffersize = (length + this.deadSpace) * repeatSegmentCount;
@@ -41,8 +43,14 @@ public class EColorStrip
     led.setLength(ledBuffer.getLength());
     SetAllColor(Color.kWhite);
 
-    System.out.println("buffersize size" + buffersize); 
+    //System.out.println("buffersize size" + buffersize); 
 
+    }
+
+    public void SetNewSectionSize(int sections)
+    {
+      this.sections = sections;
+      sectionSize = length / sections;
     }
 
     public void start()
@@ -56,31 +64,69 @@ public class EColorStrip
       return sections;
       }
 
+    public static double[] RGBtoHSV(double r, double g, double b)
+      {
+
+      double h, s, v;
+  
+      double min, max, delta;
+  
+      min = Math.min(Math.min(r, g), b);
+      max = Math.max(Math.max(r, g), b);
+      
+      // V
+      v = max;
+  
+        delta = max - min;
+  
+      // S
+        if( max != 0 )
+          s = delta / max;
+        else {
+          s = 0;
+          h = -1;
+          return new double[]{h,s,v};
+        }
+  
+      // H
+        if( r == max )
+          h = ( g - b ) / delta; // between yellow & magenta
+        else if( g == max )
+          h = 2 + ( b - r ) / delta; // between cyan & yellow
+        else
+          h = 4 + ( r - g ) / delta; // between magenta & cyan
+  
+        h *= 60;    // degrees
+  
+      if( h < 0 )
+          h += 360;
+  
+      return new double[]{h,s,v};
+    }
+
+    public static Color CapColorBrightness(Color startColor, double brightnessPercent)
+    {
+      double[] hsv = EColorStrip.RGBtoHSV(startColor.red, startColor.green, startColor.blue);
+
+      int newH = (int)(hsv[0] / 2.0);
+      int newS = (int)(hsv[1] * 255.0);
+      int newV = (int)(Math.min(hsv[2], brightnessPercent) * 255.0);
+
+      return Color.fromHSV(newH, newS, newV);
+    }
+
     public void SetAllColor(Color color)
       {
-      SetAllColor( (int)(color.red * 255.999) , (int)(color.green * 255.999), (int)(color.blue * 255.999));
-      }
+      Color newColor = CapColorBrightness(color, 0.5);
 
-    public void SetAllColor(int red, int green, int blue)
+      for(var j = 0; j < repeatSegmentCount; j++)
         {
-        for(var j = 0; j < repeatSegmentCount; j++)
-            {
-                for (var i = 0; i < length; i++)
-                {
-                // Sets the specified LED to the RGB values for red
-                ledBuffer.setRGB(i + (length * j), red, green, blue);
-                }
-        
-            }
-
-        // //mirror
-
-        // for (var i = endIndex; i > (endIndex - length); i--)
-        // {
-        // // Sets the specified LED to the RGB values for red
-        // ledBuffer.setRGB(i, red, green, blue);
-        // }
-
+          for (var i = 0; i < length; i++)
+          {
+          ledBuffer.setLED(i + (length * j), newColor);
+          }
+    
+        }
 
       System.out.println("SetAllColor");          
 
@@ -89,13 +135,14 @@ public class EColorStrip
 
     public void SetSectionColor(int index, Color color)
       {
-      SetSectionColor(index, (int)(color.red * 255.999) , (int)(color.green * 255.999), (int)(color.blue * 255.999));
-      }
+    //   SetSectionColor(index, (int)(color.red * 255.999) , (int)(color.green * 255.999), (int)(color.blue * 255.999));
+    //   }
 
-    public void SetSectionColor(int index, int red, int green, int blue)
-      {
+    // public void SetSectionColor(int index, int red, int green, int blue)
+    //   {
       int firstIndex = sectionSize * index;
       int lastIndex = firstIndex + sectionSize;
+      Color newColor = CapColorBrightness(color, 0.5);
 
       if(firstIndex > ledBuffer.getLength())
         {
@@ -109,34 +156,14 @@ public class EColorStrip
         return;
         }
 
-      // int mirrorIndex = ledBuffer.getLength() - firstIndex;
-
       for(var j = 0; j < repeatSegmentCount; j++)
       {
-          for (var i = firstIndex; i < lastIndex; i++)
-          {
-          // Sets the specified LED to the RGB values for red
-          ledBuffer.setRGB(i + (length * j), red, green, blue);
-          }
-  
+        for (var i = firstIndex; i < lastIndex; i++)
+        {
+        ledBuffer.setLED(i + (length * j), newColor);
+        }
       }
-
-    //   for (var i = firstIndex; i < lastIndex; i++)
-    //     {
-    //     // Sets the specified LED to the RGB values for red
-    //     ledBuffer.setRGB(i, red, green, blue);
-    //     }
-
-        
-
-
-        // for(int j = endIndex - firstIndex; j > endIndex - lastIndex; j--)
-        // {
-        // ledBuffer.setRGB(j, red, green, blue);
-        // }
-
-      //System.out.println("SetSectionColor");
-
+  
       led.setData(ledBuffer);
       } 
 
