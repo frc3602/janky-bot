@@ -20,6 +20,8 @@ public class OI {
   public static Joystick joystick = new Joystick(Controller.joystickPort);
 
   public static JoystickButton joystickButtonOne = new JoystickButton(joystick, Controller.joystickButton1);
+  public static JoystickButton joystickButton11 = new JoystickButton(joystick, 11);
+  public static JoystickButton joystickButton12 = new JoystickButton(joystick, 12);
 
   public OI() {
   }

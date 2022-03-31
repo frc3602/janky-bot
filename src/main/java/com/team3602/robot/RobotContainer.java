@@ -20,6 +20,7 @@ public class RobotContainer {
     // Subsystems
     public final static DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
     public final static PixySubsystem pixySubsystem = new PixySubsystem();
+    public final static BlingTestSubsystem blingTest = new BlingTestSubsystem();
 
     // Commands
     public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
@@ -32,6 +33,8 @@ public class RobotContainer {
     public RobotContainer() {
         configureDefaultCommands();
         configureButtonBindings();
+
+        blingTest.Init();
     }
 
     // Defaults
