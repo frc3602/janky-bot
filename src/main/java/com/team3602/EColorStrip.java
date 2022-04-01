@@ -4,6 +4,8 @@
 
 package com.team3602;
 
+import com.team3602.robot.Constants;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
@@ -23,7 +25,7 @@ public class EColorStrip
   private int deadSpace = 1;
   private int endIndex = 1;
 
-  private static final int repeatSegmentCount = 3;
+  private static final int repeatSegmentCount = 4;
 
   public EColorStrip(int port, int length_, int sections_, int deadSpace)
     {
@@ -117,7 +119,7 @@ public class EColorStrip
 
     public void SetAllColor(Color color)
       {
-      Color newColor = CapColorBrightness(color, 0.5);
+      Color newColor = CapColorBrightness(color, Constants.LEDColorStrip.brightnessPercentage);
 
       for(var j = 0; j < repeatSegmentCount; j++)
         {
@@ -142,7 +144,7 @@ public class EColorStrip
     //   {
       int firstIndex = sectionSize * index;
       int lastIndex = firstIndex + sectionSize;
-      Color newColor = CapColorBrightness(color, 0.5);
+      Color newColor = CapColorBrightness(color, Constants.LEDColorStrip.brightnessPercentage);
 
       if(firstIndex > ledBuffer.getLength())
         {

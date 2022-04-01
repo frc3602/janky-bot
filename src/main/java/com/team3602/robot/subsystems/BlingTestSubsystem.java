@@ -6,6 +6,7 @@ package com.team3602.robot.subsystems;
 
 import com.team3602.EColorStrip;
 import com.team3602.robot.OI;
+import com.team3602.robot.RobotContainer;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -31,15 +32,20 @@ public class BlingTestSubsystem extends SubsystemBase {
 
   public void Init()
   {
+    colorStrip.SetAllColor(GetAllianceColor());
     colorStrip.start();
   }
 
   public static Color GetAllianceColor()
   {
+    // if(DriverStation.getAlliance() == Alliance.Blue)
+    //  return Color.kFirstBlue;
+    // else
+    //  return Color.kFirstRed;
     if(DriverStation.getAlliance() == Alliance.Blue)
-     return Color.kFirstBlue;
+     return Color.kBlue;
     else
-     return Color.kFirstRed;
+     return Color.kRed;
   }
 
   public void SetAllianceColor()
@@ -60,10 +66,8 @@ public class BlingTestSubsystem extends SubsystemBase {
   @Override
   public void periodic()
   {
-
     onOne = OI.joystick.getRawButton(11);
     onTwo = OI.joystick.getRawButton(12);
-
 
     if(onOne && !prevOne) 
     {

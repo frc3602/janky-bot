@@ -37,4 +37,11 @@ public interface Constants {
 
     int joystickButton1 = 1;
   }
+
+
+  public interface LEDColorStrip
+  {
+    double brightnessPercentage = 0.2;
+  }
+
 }

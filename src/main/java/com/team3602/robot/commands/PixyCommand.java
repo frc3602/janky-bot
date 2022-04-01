@@ -4,12 +4,15 @@
 
 package com.team3602.robot.commands;
 
+import com.team3602.robot.Constants;
 import com.team3602.robot.RobotContainer;
 import com.team3602.robot.subsystems.PixySubsystem;
 
 // Java imports
 import java.util.ArrayList;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -39,7 +42,16 @@ public class PixyCommand extends CommandBase {
     // Gets the number of "blocks", identified targets, does not wait for new data
     // if none is available, and limits the number of returned blocks to 25, for a
     // slight increase in efficiency
-    int pixyBlocks = PixySubsystem.pixyCamera.getCCC().getBlocks(false, -1, 25);
+
+    int sig = BLUE_BALL;
+
+    if(DriverStation.getAlliance() == Alliance.Red)
+    sig = RED_BALL;
+
+    int getBlocksError = PixySubsystem.pixyCamera.getCCC().getBlocks(false, sig, 25);
+
+    System.out.println("ERROR: getBlocksError " + getBlocksError);          
+
 
     ArrayList<Block> blocks = PixySubsystem.pixyCamera.getCCC().getBlockCache(); // Gets a list of all blocks found
 
