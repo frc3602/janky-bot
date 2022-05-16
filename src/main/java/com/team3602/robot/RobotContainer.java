@@ -10,10 +10,11 @@ import com.team3602.robot.subsystems.*;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 // WPILib imports
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /**
- * The RobotContainer class provides the subsystems, commands, operator
- * interfaces and all the default settings for the robot.
+ * The RobotContainer class provides the subsystems, commands, operator interfaces and all the
+ * default settings for the robot.
  *
  * @author Cody Wellman
  */
@@ -24,7 +25,6 @@ public class RobotContainer {
     public final static BlingTestSubsystem blingTest = new BlingTestSubsystem();
 
     // Commands
-    public final static DrivetrainCommand drivetrainCommand = new DrivetrainCommand();
     public final static PixyCommand pixyCommand = new PixyCommand();
     public final static PixyTurnPIDCommand pixyTurnPIDCommand = new PixyTurnPIDCommand();
 
@@ -41,7 +41,10 @@ public class RobotContainer {
     // Defaults
 
     private void configureDefaultCommands() {
-        drivetrainSubsystem.setDefaultCommand(drivetrainCommand);
+        drivetrainSubsystem.setDefaultCommand(new RunCommand(() -> {
+            drivetrainSubsystem.arcadeDrive(OI.joystick.getY() * -1.0, OI.joystick.getX());
+        }, drivetrainSubsystem));
+
         pixySubsystem.setDefaultCommand(pixyCommand);
     }
 

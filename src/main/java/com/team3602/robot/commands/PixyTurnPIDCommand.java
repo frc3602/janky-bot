@@ -24,7 +24,7 @@ public class PixyTurnPIDCommand extends PIDCommand {
         // This uses the output
         output -> {
           // Use the output here
-          RobotContainer.drivetrainSubsystem.ArcadeDrive(OI.joystick.getY() * -1.0, output * -1.0);
+          RobotContainer.drivetrainSubsystem.arcadeDrive(OI.joystick.getY() * -1.0, output * -1.0);
         });
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drivetrainSubsystem);

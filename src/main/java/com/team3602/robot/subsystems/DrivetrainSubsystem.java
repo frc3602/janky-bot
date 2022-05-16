@@ -4,13 +4,13 @@
 
 package com.team3602.robot.subsystems;
 
-import static com.team3602.robot.Constants.Drivetrain;
+import com.team3602.robot.Constants;
 
 // Phoenix imports
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 // WPILib imports
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  * 
  * @author Cody Wellman
  */
-public class DrivetrainSubsystem extends SubsystemBase {
+public class DrivetrainSubsystem implements Subsystem, Constants {
   private static final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Drivetrain.driveFrontLeftCANID);
   private static final WPI_TalonSRX backLeft = new WPI_TalonSRX(Drivetrain.driveBackLeftCANID);
   private static final WPI_TalonSRX frontRight = new WPI_TalonSRX(Drivetrain.driveFrontRightCANID);
@@ -38,7 +38,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     configureMotors();
   }
 
-  public void ArcadeDrive(double xSpeed, double zRotation) {
+  public void arcadeDrive(double xSpeed, double zRotation) {
     differentialDrive.arcadeDrive(xSpeed, zRotation);
   }
 
